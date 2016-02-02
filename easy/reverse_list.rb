@@ -16,9 +16,25 @@ class ListNode
     end
 end
 
+
+def reverse_list(head)
+  return head if head.nil? || head.next.nil?
+  
+  prev, current = nil, head
+  
+  while current
+    next_node = current.next
+    current.next = prev
+    prev = current
+    current = next_node
+  end
+  prev
+end
+    
+end
 # @param {ListNode} head
 # @return {ListNode}
-def reverse_list(head)
+def reverse_list_inefficient(head)
     stack = list_to_stack(head)
     new_head = ListNode.new(stack.pop)
     c = new_head
