@@ -1,0 +1,27 @@
+# Definition for singly-linked list.
+# class ListNode
+#     attr_accessor :val, :next
+#     def initialize(val)
+#         @val = val
+#         @next = nil
+#     end
+# end
+
+# @param {ListNode} head
+# @param {Integer} val
+# @return {ListNode}
+def remove_elements(head, val)
+    return head if head.nil?
+    dummy = ListNode.new(nil)
+    dummy.next = head;
+    p = dummy
+    
+    while p.next
+        if p.next.val == val
+            p.next = p.next.next
+        else
+            p = p.next
+        end
+    end
+    dummy.next
+end
