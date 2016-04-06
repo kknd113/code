@@ -8,30 +8,5 @@
  *   * @return {boolean}
  *    */
 var canWinNim = function(n) {
-  if(n < 4) return true;
-  if(n == 4) return false;
-
-  var queue = [];
-  var cache = {};
-  queue.push(
-    {num: n-3, level: 2}, 
-    {num: n-2, level: 2}, 
-    {num: n-1, level: 2} 
-  );
-  while(queue.length > 0){
-    cur = queue.splice(0,1)[0];
-    if(cur.level % 2 == 1 && cur.num <= 3) return true;
-    else if(!cache[cur.num + '_' + cur.level]){
-      for(var i=3; i > 0; i--){
-        if(cur.num - i > 0) {
-          queue.push({
-            num: cur.num - i,
-            level: cur.level + 1
-          });
-        }
-      }
-      cache[cur.num + '_' + cur.level] = true
-    }
-  }
-  return false;
+  return n < 4 || n % 4 > 0;
 };
