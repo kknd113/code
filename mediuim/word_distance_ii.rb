@@ -2,7 +2,7 @@ class WordDistance
   attr_accessor :index_hash, :min
   def initialize(words)
     set_hash(words)
-    @min = words.count
+    @count = words.count
   end
   
   def set_hash(words)
@@ -13,13 +13,14 @@ class WordDistance
   end
 
   def shortest(word1, word2)
+    min = @count
     word1_indices, word2_indices = @index_hash[word1], @index_hash[word2]
     word1_indices.each do |i1|
       word2_indices.each do |i2|
         diff = (i1 - i2).abs
-        @min = diff if diff < @min
+        min = diff if diff < min
       end
     end
-    @min
+    min
   end
 end
