@@ -1,6 +1,26 @@
 # @param {Integer[]} height
 # @return {Integer}
 
+
+def trap(height)
+    left, right = 0, height.length - 1
+    leftMax, rightMax = height[left], height[right]
+    total = 0
+    
+    while left < right
+      if height[left] < height[right]
+        leftMax = [leftMax, height[left+1]].max
+        total += leftMax - height[left+1]
+        left += 1
+      else
+        rightMax = [rightMax, height[right-1]].max
+        total += rightMax - height[right-1]
+        right -= 1
+      end
+    end
+    total
+end
+
 def trap_naive(height)
   max_to_left_arr, max_to_right_arr = calculateMaxLeftRight(height)
   water = 0
