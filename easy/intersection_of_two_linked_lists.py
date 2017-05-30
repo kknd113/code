@@ -26,8 +26,31 @@ class ListNode(object):
         self.val = x
         self.next = None
 
+# https://leetcode.com/problems/intersection-of-two-linked-lists/#/solutions
+# I found most solutions here preprocess linkedlists to get the difference in len.
+# Actually we don't care about the "value" of difference, we just want to make sure two pointers reach the intersection node at the same time.
+# 
+# We can use two iterations to do that. In the first iteration, we will reset the pointer of one linkedlist to the head of another linkedlist after it reaches the tail node. In the second iteration, we will move two pointers until they points to the same node. Our operations in first iteration will help us counteract the difference. So if two linkedlist intersects, the meeting point in second iteration must be the intersection point. If the two linked lists have no intersection at all, then the meeting pointer in second iteration must be the tail node of both lists, which is null
+
 class Solution(object):
     def getIntersectionNode(self, headA, headB):
+        if (headA == None or headB == None):
+            return None
+        aTmp = headA
+        bTmp = headB
+        
+        while(aTmp != bTmp):
+            if aTmp == None:
+                aTmp = headB
+            else:
+                aTmp = aTmp.next
+            if bTmp == None:
+                bTmp = headA
+            else:
+                bTmp = bTmp.next
+        return 
+            
+    def getIntersectionNodeNoob(self, headA, headB):
         """
         :type head1, head1: ListNode
         :rtype: ListNode
