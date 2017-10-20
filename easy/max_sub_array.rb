@@ -15,7 +15,7 @@ def max_sub_array(nums)
   max_here = nums[0]
   max_so_far = nums[0]
   
-  nums.each do |num|
+  nums[1..-1].each do |num|
     max_here = [num, num+max_here].max
     max_so_far = max_here > max_so_far ? max_here : max_so_far
     puts "max_here: #{max_here}, max_so_far: #{max_so_far}"
