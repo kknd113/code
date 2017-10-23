@@ -23,3 +23,8 @@
 --   employee as b
 -- where a.ManagerId = b.id AND a.salary > b.salary
 
+select a.name as Employee
+from
+  employee as a join employee as b
+  on a.ManagerId = b.Id
+where a.salary > b.salary
